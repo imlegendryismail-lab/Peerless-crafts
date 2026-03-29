@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Peerless Crafts Checkout</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background: linear-gradient(135deg,#800080,#FFD700,#FF69B4,#FFD700,#800080,#1a001f);
+color:white;
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 10%;
+background:rgba(0,0,0,0.85);
+backdrop-filter:blur(10px);
+}
+
+.logo{
+font-family:'Playfair Display',serif;
+font-size:28px;
+color:#c77dff;
+letter-spacing:3px;
+}
+
+nav a{
+color:white;
+margin-left:15px;
+text-decoration:none;
+font-size:14px;
+}
+
+/* MAIN BOX */
+
+.container{
+max-width:850px;
+margin:70px auto;
+background:rgba(0,0,0,0.6);
+padding:40px;
+border-radius:20px;
+box-shadow:0 0 40px #ff69b4;
+animation:fadeUp 1.2s ease;
+}
+
+/* TITLES */
+
+.title{
+text-align:center;
+font-family:'Playfair Display',serif;
+font-size:38px;
+margin-bottom:30px;
+
+background: linear-gradient(90deg,#FFD700,#FF69B4,#AA00FF);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+/* ORDER SUMMARY */
+
+.summary{
+margin-bottom:40px;
+}
+
+.summary p{
+display:flex;
+justify-content:space-between;
+font-size:18px;
+margin:10px 0;
+}
+
+/* FORM */
+
+form{
+display:grid;
+gap:15px;
+}
+
+input,textarea{
+padding:12px;
+border-radius:10px;
+border:none;
+font-size:15px;
+outline:none;
+}
+
+/* BUTTON */
+
+button{
+margin-top:15px;
+padding:14px;
+border:none;
+border-radius:30px;
+background:#FF69B4;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+.remove-btn{
+  background: transparent;
+  border: none;
+  color: red;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+  padding: 2px 6px;
+}
+
+.remove-btn:hover{
+  transform: scale(1.2);
+}
+/* PAYMENT BOX */
+
+.payment-box{
+margin-top:30px;
+padding:25px;
+background:rgba(255,255,255,0.05);
+border-radius:20px;
+text-align:center;
+backdrop-filter:blur(10px);
+box-shadow:0 0 25px rgba(255,105,180,0.4);
+}
+
+.qr-img{
+width:220px;
+border-radius:15px;
+margin:15px 0;
+box-shadow:0 0 20px #FFD700;
+transition:0.3s;
+}
+
+.qr-img:hover{
+transform:scale(1.05);
+}
+
+.whatsapp-btn{
+display:inline-block;
+padding:12px 25px;
+background:#25D366;
+color:white;
+border-radius:30px;
+text-decoration:none;
+font-weight:bold;
+margin-top:10px;
+}
+
+/* SUCCESS */
+
+.success-box{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.95);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+opacity:0;
+visibility:hidden;
+transition:0.6s;
+}
+
+.success-box.show{
+opacity:1;
+visibility:visible;
+}
+
+.check{
+font-size:90px;
+color:#00ff88;
+}
+
+/* ANIMATION */
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+/* LOADING ANIMATION */
+
+.check{
+font-size:80px;
+animation:pop 0.5s ease;
+}
+
+@keyframes pop{
+0%{transform:scale(0);}
+100%{transform:scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo"><b>peerless crafts</b></div>
+    <nav>
+        <a href="https://www.meesho.com/PeerlessCrafts?_ms=3.0.1">Meesho</a>
+        <a href="#">Shop</a>
+        <a href="https://wa.me/916305325346">WhatsApp</a>
+    </nav>
+</header>
+
+<div class="container">
+
+<h2>Order Summary</h2>
+
+<div id="cartItems"></div>
+
+<p>Delivery: ₹50</p>
+
+<h3>Total: ₹<span id="total"></span></h3>
+
+<h1 class="title">Delivery Details</h1>
+
+<form id="orderForm">
+
+<input type="text" placeholder="Full Name" required>
+<input type="tel" placeholder="Phone Number" required>
+<input type="email" placeholder="Email Address" required>
+<textarea placeholder="Full Delivery Address" required></textarea>
+<input type="text" placeholder="City" required>
+<input type="text" placeholder="Pincode" required>
+
+<button type="submit">Place Order</button>
+
+</form>
+
+<!-- PAYMENT SECTION -->
+
+<div class="payment-box">
+
+  <marquee behavior="scroll" direction="left" colour="brown">
+      <h4>alert("Please send payment screenshot with delivery details. We'll confirm order after verification.");</h4>
+        </marquee>
+        
+<h2>Secure Payment</h2>
+<p style="color:#FFD700;">Pay via UPI</p>
+
+<img src="https://i.ibb.co/8LZCNyTT/IMG-20260320-084815.jpg" class="qr-img">
+
+<p><b>UPI ID:</b> 6305325346@axl</p>
+
+<p style="font-size:12px; opacity:0.7;">
+100% Secure • Fast Delivery • Trusted Service
+</p>
+
+
+</div>
+
+<div class="success-box" id="successBox">
+<div class="check">✔</div>
+<h2>Order Placed Successfully</h2>
+</div>
+
+
+
+<!-- PROCESSING SCREEN -->
+<div class="success-box" id="processingBox">
+<div class="check">⏳</div>
+<h2>Processing Payment...</h2>
+<p>Please wait while we verify your order</p>
+</div>
+
+<!-- SUCCESS SCREEN -->
+<div class="success-box" id="successBox">
+<div class="check">✔</div>
+<h2>Order Confirmed</h2>
+<p id="orderIdText"></p>
+</div>
+<script>
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let container = document.getElementById("cartItems");
+let total = 0;
+
+if(cart.length === 0){
+container.innerHTML = "Your cart is empty 🛒";
+}else{
+
+cart.forEach((item, index) => {
+
+let div = document.createElement("div");
+
+div.innerHTML = `
+${item.name} - ₹${item.price}
+<button class="remove-btn" onclick="removeItem(${index})">✖️</button>
+`;
+
+container.appendChild(div);
+
+total += item.price;
+
+});
+
+}
+
+document.getElementById("total").innerText = total + 50;
+
+function removeItem(index){
+
+cart.splice(index, 1);
+
+localStorage.setItem("cart", JSON.stringify(cart));
+
+location.reload();
+
+}
+
+</script>
+
+</body>
+</html>
+</body>
+</html>
