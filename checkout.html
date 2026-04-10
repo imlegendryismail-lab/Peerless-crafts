@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Peerless Crafts Checkout</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background: linear-gradient(135deg,#800080,#FFD700,#FF69B4,#FFD700,#800080,#1a001f);
+color:white;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 10%;
+background:rgba(0,0,0,0.85);
+}
+
+.logo{
+font-family:'Playfair Display',serif;
+font-size:28px;
+color:#c77dff;
+}
+
+nav a{
+color:white;
+margin-left:15px;
+text-decoration:none;
+}
+
+.container{
+max-width:850px;
+margin:70px auto;
+background:rgba(0,0,0,0.6);
+padding:40px;
+border-radius:20px;
+}
+
+.title{
+text-align:center;
+font-family:'Playfair Display',serif;
+font-size:32px;
+margin:20px 0;
+}
+
+form{
+display:grid;
+gap:15px;
+}
+
+input,textarea{
+padding:12px;
+border-radius:10px;
+border:none;
+}
+
+button{
+padding:14px;
+border:none;
+border-radius:30px;
+background:#FF69B4;
+cursor:pointer;
+}
+
+.remove-btn{
+background:transparent;
+border:none;
+color:red;
+cursor:pointer;
+margin-left:10px;
+}
+
+.payment-box{
+margin-top:30px;
+padding:20px;
+background:rgba(255,255,255,0.05);
+border-radius:20px;
+text-align:center;
+}
+
+.qr-img{
+width:200px;
+margin:10px 0;
+}
+
+/* SUCCESS & PROCESS */
+
+.success-box{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.95);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+opacity:0;
+visibility:hidden;
+transition:0.5s;
+}
+
+.success-box.show{
+opacity:1;
+visibility:visible;
+}
+
+.check{
+font-size:70px;
+margin-bottom:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">peerless crafts</div>
+<nav>
+<a href="index.html">Home</a>
+<a href="#">Shop</a>
+</nav>
+</header>
+
+<div class="container">
+
+<h1>Order Summary</h1>
+
+<div id="cartItems"></div>
+
+<p>Delivery: ₹50</p>
+
+<h3>Total: ₹<span id="total"></span></h3>
+
+<h1 class="title">Delivery Details</h1>
+
+<form id="orderForm">
+<input type="text" placeholder="Full Name" required>
+<input type="tel" placeholder="Phone Number" required>
+<input type="email" placeholder="Email Address" required>
+<textarea placeholder="Full Address" required></textarea>
+<input type="text" placeholder="City" required>
+<input type="text" placeholder="Pincode" required>
+
+<button type="submit">Place Order</button>
+</form>
+
+<div class="payment-box">
+     <marquee behavior="scroll" direction="left" colour="blue">
+          <h5>"Kindly share the payment confirmation screenshot once delivery details are sent."</h5>
+          </marquee>
+          
+<h3>Pay via UPI</h3>
+<img src="https://i.ibb.co/8LZCNyTT/IMG-20260320-084815.jpg" class="qr-img">
+<p><b>UPI ID:</b> 6305325346@axl</p>
+</div>
+
+</div>
+
+<!-- PROCESSING -->
+<div class="success-box" id="processingBox">
+<div class="check">⏳</div>
+<h2>Processing Payment...</h2>
+</div>
+
+<!-- SUCCESS -->
+<div class="success-box" id="successBox">
+<div class="check">✔</div>
+<h2>Order Confirmed</h2>
+</div>
+
+<script>
+
+// LOAD CART
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let container = document.getElementById("cartItems");
+let total = 0;
+
+if(cart.length === 0){
+container.innerHTML = "Your cart is empty 🛒";
+}else{
+
+cart.forEach((item, index) => {
+
+let div = document.createElement("div");
+
+div.innerHTML = `
+${item.name} - ₹${item.price}
+<button class="remove-btn" onclick="removeItem(${index})">✖️</button>
+`;
+
+container.appendChild(div);
+
+total += item.price;
+
+});
+
+}
+
+document.getElementById("total").innerText = total + 50;
+
+// REMOVE ITEM
+function removeItem(index){
+cart.splice(index, 1);
+localStorage.setItem("cart", JSON.stringify(cart));
+location.reload();
+}
+
+// FORM SUBMIT WITH WHATSAPP
+document.getElementById("orderForm").addEventListener("submit", function(e){
+e.preventDefault();
+
+// FORM DATA
+let name = document.querySelector("input[placeholder='Full Name']").value;
+let phone = document.querySelector("input[placeholder='Phone Number']").value;
+let email = document.querySelector("input[placeholder='Email Address']").value;
+let address = document.querySelector("textarea").value;
+let city = document.querySelector("input[placeholder='City']").value;
+let pincode = document.querySelector("input[placeholder='Pincode']").value;
+
+// CART
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+if(cart.length === 0){
+alert("Cart is empty!");
+return;
+}
+
+// ORDER ID
+let orderId = "PC-" + Math.floor(1000 + Math.random() * 9000);
+
+// PRODUCTS
+let productList = "";
+let total = 0;
+
+cart.forEach(item => {
+productList += item.name + " (₹" + item.price + ")\n";
+total += item.price;
+});
+
+total += 50;
+
+// MESSAGE
+let message = `🛒 New Order
+Order ID: ${orderId}
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+Address: ${address}
+City: ${city}
+Pincode: ${pincode}
+
+Products:
+${productList}
+
+Total: ₹${total}
+
+Payment done, sending screenshot`;
+
+let encodedMessage = encodeURIComponent(message);
+
+// YOUR NUMBER
+let whatsappNumber = "916305325346";
+
+// OPEN WHATSAPP
+window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank");
+
+// UI FLOW
+document.getElementById("processingBox").classList.add("show");
+
+setTimeout(() => {
+document.getElementById("processingBox").classList.remove("show");
+document.getElementById("successBox").classList.add("show");
+
+// CLEAR CART AFTER SEND
+localStorage.removeItem("cart");
+
+}, 2000);
+
+});
+
+</script>
+
+</body>
+</html>
