@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap:"https://imlegendryismail-lab.github.io/Peerless-crafts/sitemap.xml
+Sitemap: https://imlegendryismail-lab.github.io/Peerless-crafts/sitemap.xml
