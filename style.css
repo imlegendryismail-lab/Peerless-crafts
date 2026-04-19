@@ -146,4 +146,20 @@ h5{
     font-family: 'Playfair Display', serif;
     animation: fadeIn 2s ease-in-out;
 }
+.main-btn {
+    display: inline-block;
+    background: #ff4da6;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.main-btn:hover {
+    background: #ff1a8c;
+    transform: scale(1.05);
+}
 
