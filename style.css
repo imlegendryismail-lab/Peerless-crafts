@@ -20,15 +20,28 @@ header{
     backdrop-filter: blur(10px);
 }
 
-.logo img{
-    height:45px;
-    object-fit:contain;
+.logo{
+    font-family: 'Playfair Display', serif;
+    font-size:28px;
+    color:#c77dff;
+    letter-spacing:3px;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from { text-shadow: 0 0 10px #FFD700; }
+    to { text-shadow: 0 0 25px #c77dff, 0 0 40px #FF69B4; }
 }
 
 nav a{
     color:#FFD700;
     text-decoration:none;
     margin-left:20px;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#c77dff;
 }
 
 /* HERO */
@@ -38,42 +51,33 @@ nav a{
 }
 
 .animated-heading{
-    font-size:42px;
+    font-size:48px;
     font-family: 'Playfair Display', serif;
-    margin-bottom:10px;
+    background: linear-gradient(135deg,#FFD700,#FF69B4,#AA00FF,#1a001f);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation: fadeIn 2s ease-in-out;
 }
 
-.hero-text{
-    font-size:14px;
-    color:rgba(255,255,255,0.85);
-    line-height:1.5;
-    margin-bottom:15px;
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(-30px);}
+    to{opacity:1; transform:translateY(0);}
 }
 
-/* BUTTONS */
-.hero-buttons{
-    margin-top:10px;
-}
-
-.btn{
-    display:inline-block;
-    padding:12px 25px;
-    margin:5px;
+.hero button{
+    margin-top:20px;
+    padding:12px 30px;
     background:#FF69B4;
+    border:none;
     color:black;
-    border-radius:25px;
-    text-decoration:none;
-    font-weight:500;
+    font-size:16px;
+    cursor:pointer;
+    border-radius:30px;
+    transition:0.4s;
 }
 
-.btn:hover{
-    transform:scale(1.05);
-}
-
-.outline{
-    background:transparent;
-    border:2px solid white;
-    color:white;
+.hero button:hover{
+    transform:scale(1.1);
 }
 
 /* PRODUCTS */
@@ -84,6 +88,7 @@ nav a{
 .products h2{
     text-align:center;
     margin-bottom:40px;
+    font-size:32px;
 }
 
 .product-grid{
@@ -97,6 +102,12 @@ nav a{
     padding:20px;
     border-radius:15px;
     text-align:center;
+    transition:0.4s;
+}
+
+.product-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 60px #FF69B4;
 }
 
 .product-card img{
@@ -112,22 +123,27 @@ nav a{
     color:black;
     border-radius:20px;
     cursor:pointer;
+    transition:0.3s;
 }
 
-/* CENTER */
-.center{
+.product-card button:hover{
+    transform:scale(1.05);
+}
+
+/* FOOTER */
+footer{
     text-align:center;
-    margin-top:30px;
+    color:purple;
+    padding:20px;
+    margin-top:50px;
 }
 
-/* CHECKOUT BUTTON */
-.checkout{
-    background:#a64dff;
-    color:white;
-}
-
-/* TEXT */
+/* TEXT STYLE */
 h5{
-    margin-top:30px;
-    padding:10px;
-    }
+    color:#2E0854;
+    margin-top:50px;
+    padding:20px;
+    font-family: 'Playfair Display', serif;
+    animation: fadeIn 2s ease-in-out;
+}
+
