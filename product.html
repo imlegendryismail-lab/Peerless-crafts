@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resin Multi-purpose Tray | Peerless Crafts</title>
+    <!-- Google Fonts aligned with your luxury theme -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="product-style.css">
+</head>
+<body>
+
+    <!-- Header / Navigation Bar (Matches your Home Page branding) -->
+    <header class="luxury-header">
+        <div class="logo-container">
+            <h1 class="brand-title">Peerless Crafts</h1>
+            <p class="brand-subtitle">Handmade Resin Art & Luxury Custom Products</p>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#products">Products</a>
+            <a href="https://wa.me" class="whatsapp-btn-nav">WhatsApp Shop</a>
+        </nav>
+    </header>
+
+    <!-- Main Product Container -->
+    <main class="product-container animate-fade-up">
+        
+        <!-- Left Side: Product Visuals -->
+        <div class="product-gallery">
+            <div class="main-image-wrapper">
+                <img src="https://unsplash.com" alt="Resin Multi-purpose Tray" id="main-product-img">
+            </div>
+            <!-- Sub-thumbnails if you want to add alternate views later -->
+            <div class="thumbnail-row">
+                <img src="https://unsplash.com" class="thumb active" onclick="changeImage(this.src)">
+                <img src="https://unsplash.com" class="thumb" onclick="changeImage(this.src)">
+            </div>
+        </div>
+
+        <!-- Right Side: Product Details & Purchase Actions -->
+        <div class="product-details">
+            <span class="category-tag">Unique Handcrafted Art</span>
+            <h2 class="product-title">Resin Multi-purpose Tray</h2>
+            <div class="price-tag">₹399</div>
+            
+            <p class="product-description">
+                Elevate your living space with our premium, intricately designed multi-purpose resin tray. Carefully handcrafted with precision, love, and high-gloss crystal clear resin, this piece blends functional luxury with modern artistry. Perfect for organizing jewelry, serving in style, or acting as a standalone statement decor piece.
+            </p>
+
+            <div class="product-features">
+                <div class="feature-item">✨ <strong>100% Unique:</strong> No two custom pours are exactly alike.</div>
+                <div class="feature-item">🛡️ <strong>Durable Finish:</strong> Scratch-resistant and heat-resistant luxury resin.</div>
+                <div class="feature-item">🎨 <strong>Color Palette:</strong> Deep black, bright whites, and shimmering gold leaf accents.</div>
+            </div>
+
+            <!-- Actions -->
+            <div class="action-buttons">
+                <button class="add-to-cart-btn" onclick="addToCartClick()">Add to Cart 🛒</button>
+                <a href="https://wa.me?text=Hi%20Peerless%20Crafts,%20I%27m%20interested%20in%20buying%20the%20Resin%20Multi-purpose%20Tray%20(₹399)." target="_blank" class="whatsapp-checkout-btn">
+                    Order via WhatsApp 💬
+                </a>
+            </div>
+            
+            <a href="index.html" class="back-to-home">← Back to All Products</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="luxury-footer">
+        <p>&copy; 2026 Peerless Crafts. Handcrafted with Love.</p>
+    </footer>
+
+    <!-- Interactive script for thumbnails & click responses -->
+    <script>
+        function changeImage(src) {
+            document.getElementById('main-product-img').src = src;
+            let thumbs = document.querySelectorAll('.thumb');
+            thumbs.forEach(thumb => thumb.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        function addToCartClick() {
+            alert('Item added to your luxury cart! Go to checkout on the main page to finalize.');
+        }
+    </script>
+</body>
+</html>
